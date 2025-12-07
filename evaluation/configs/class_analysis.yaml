@@ -1,0 +1,95 @@
+# Sample config to run all of the task options
+# Task Options:  'top_n_classes', 'check_classes', 'sss_threshold_analysis', 'conf_threshold_analysis', 'vit_layer_analysis'
+tasks: ['top_n_classes', 'check_classes', 'sss_threshold_analysis', 'conf_threshold_analysis', 'vit_layer_analysis'] 
+
+top_n_classes:
+  input_json: ../outputs/consolidated_outputs/image_classification/semscore_deit_small_patch16_224_20250509012628.json
+  output_dir: ../outputs/class_based_scores/
+  task: image_classification # options: attention, image_classification, 
+  dataset: in1k
+  n_classes: 5 #number of classes to show in top and bottom
+
+check_classes: 
+  input_json: ../outputs/consolidated_outputs/image_classification/semscore_deit_small_patch16_224_20250509012628.json
+  output_dir: ../outputs/class_based_scores/
+  classes: [65, 98, 109]
+  task: image_classification # options: attention, image_classification, 
+  dataset: in1k
+
+conf_threshold_analysis: 
+  input_jsons: [
+    '../outputs/vlm/semscore_openai_clip-vit-base-patch32_20250505112252.json',
+    '../outputs/vlm/semscore_openai_clip-vit-base-patch32_20250505115622.json',
+    '../outputs/vlm/semscore_openai_clip-vit-base-patch32_20250505130834.json',
+    '../outputs/vlm/semscore_openai_clip-vit-base-patch32_20250505094740.json',
+    '../outputs/vlm/semscore_openai_clip-vit-base-patch32_20250505101601.json',
+    '../outputs/vlm/semscore_openai_clip-vit-base-patch32_20250505104306.json',
+  ]
+  task: vlm # options: attention, image_classification, vlm
+  output_filename: ../outputs/threshold_analysis/conf_threshold_analysis
+  output_key: min_confidence # key from JSON file with threshold value
+  result_key: metadata # key to use for nesting 'json_key' outputs
+
+sss_threshold_analysis: 
+  input_jsons: [
+    '../outputs/vlm/semscore_openai_clip-vit-base-patch32_20250504215041.json',
+    '../outputs/vlm/semscore_openai_clip-vit-base-patch32_20250504221156.json',
+    '../outputs/vlm/semscore_openai_clip-vit-base-patch32_20250504223252.json',
+    '../outputs/vlm/semscore_openai_clip-vit-base-patch32_20250504225350.json',
+    '../outputs/vlm/semscore_openai_clip-vit-base-patch32_20250504232056.json',
+    '../outputs/vlm/semscore_openai_clip-vit-base-patch32_20250504234147.json'
+  ]
+  task: vlm # options: attention, image_classification, vlm
+  output_filename: ../outputs/threshold_analysis/sss_threshold_analysis
+  output_key: threshold # key from JSON file with threshold value
+  result_key: metadata # key to use for nesting 'json_key' outputs
+
+vit_layer_analysis: 
+  input_jsons: [
+    '../outputs/image_detection/semscore_pvt_v2_b0.in1k_20250508120343.json',
+    '../outputs/image_detection/semscore_pvt_v2_b0.in1k_20250508120502.json',
+    '../outputs/image_detection/semscore_pvt_v2_b0.in1k_20250508120634.json',
+    '../outputs/image_detection/semscore_pvt_v2_b0.in1k_20250508120714.json',
+  ]
+  methods: ["gradcam", "gradcam++", "xgradcam", "eigencam", "eigengradcam", "layercam"]
+  layers: [
+    "norm1",
+    "norm2",
+    "mlp.fc1",
+    "attn.proj",
+  ]
+  output_filename: ../outputs/vit_layer_analysis/
+
+attention:
+  - daam
+  - attention_grad_rollout
+  - attention_rollout
+
+image_classification:
+  - gradcam
+  - gradcam++
+  - scorecam
+  - layercam
+  - eigencam
+  - eigengradcam
+  - ablationcam
+  - xgradcam
+
+vlm:
+  - gradcam
+  - gradcam++
+  - scorecam
+  - layercam
+  - eigencam
+  - eigengradcam
+  - ablationcam
+  - xgradcam
+  - fullgrad
+
+object_detection:
+  - gradcam
+  - gradcam++
+  - layercam
+  - eigencam
+  - eigengradcam
+  - ablationcam

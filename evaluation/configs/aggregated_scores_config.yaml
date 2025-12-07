@@ -1,0 +1,50 @@
+selected_tasks:
+  - vlm
+  - attention
+  - image_classification
+  - object_detection
+
+output_dir: "../outputs/aggregated_scores"
+
+tasks:
+  attention:
+    results_dir: "../outputs/consolidated_outputs/attention"
+    methods:
+      - daam
+      - attention_grad_rollout
+      - attention_rollout
+
+  image_classification:
+    results_dir: "../outputs/consolidated_outputs/image_classification"
+    methods:
+      - gradcam
+      - gradcam++
+      - scorecam
+      - layercam
+      - eigencam
+      - eigengradcam
+      - ablationcam
+      - xgradcam
+
+  object_detection:
+    results_dir: "../outputs/consolidated_outputs/object_detection"
+    methods:
+      - gradcam
+      - gradcam++
+      - layercam
+      - eigencam
+      - eigengradcam
+      - ablationcam
+
+  vlm:
+    results_dir: "../outputs/consolidated_outputs/vlm"
+    methods:
+      - gradcam
+      - gradcam++
+      - scorecam
+      - layercam
+      - eigencam
+      - eigengradcam
+      - ablationcam
+      - xgradcam
+      - fullgrad
