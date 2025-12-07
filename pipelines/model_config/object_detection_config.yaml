@@ -1,0 +1,92 @@
+dataset: coco-s
+
+pipeline_params: 
+  threshold: 0.6
+  hard_threshold: False 
+  min_confidence: 0.04
+  filter_coco_stuff: False 
+  eigen_smooth: null 
+  aug_smooth: null 
+  top_k: 3 
+  save_interval: 1000
+  report_memory: False
+  discard_ratio: 0.9
+  head_fusion: "max"
+  daam_norm: False
+  max_image_size: 800
+  pretrained: True
+  ratio_channels_to_ablate: 0.02
+
+
+models:
+  fasterrcnn: 
+    model: "fasterrcnn_resnet50_fpn"
+    height: 7
+    width: 7
+    image_size: 224
+    target_layer: "backbone.body.layer4"
+    hierarchical: False
+
+  retinanet: 
+    model: "retinanet_resnet50_fpn"
+    height: 7
+    width: 7
+    image_size: 224
+    target_layer: "backbone.body.layer4"
+    hierarchical: False
+
+  fcos:
+    model: "fcos_resnet50_fpn"
+    height: 7
+    width: 7
+    image_size: 224
+    target_layer: "backbone.body.layer4"
+    hierarchical: False
+
+  ssd300: 
+    model: "ssd300_vgg16"
+    height: 7
+    width: 7
+    image_size: 224
+    target_layer: "backbone.features[-1]"
+    hierarchical: False
+
+  ssdlite320: 
+    model: "ssdlite320_mobilenet_v3_large"
+    height: 7
+    width: 7
+    image_size: 224
+    target_layer: "backbone.features[-1]"
+    hierarchical: False
+
+  yolov5s: 
+    model: "yolov5s"
+    height: 7
+    width: 7
+    image_size: 224
+    target_layer: "model.model.model[-2]"
+    hierarchical: False
+
+  yolov5s6: 
+    model: "yolov5s6"
+    height: 7
+    width: 7
+    image_size: 224
+    target_layer: "model.model.model[-2]"
+    hierarchical: False
+
+  yolov5m: 
+    model: "yolov5m"
+    height: 7
+    width: 7
+    image_size: 224
+    target_layer: "model.model.model[-2]"
+    hierarchical: False
+
+  yolov5m6: 
+    model: "yolov5m6"
+    height: 7
+    width: 7
+    image_size: 224
+    target_layer: "model.model.model[-2]"
+    hierarchical: False

@@ -1,0 +1,83 @@
+dataset: imagenet-s
+
+pipeline_params: 
+  threshold: 0.6
+  hard_threshold: False 
+  min_confidence: 0.04
+  filter_coco_stuff: False 
+  eigen_smooth: null 
+  aug_smooth: null 
+  top_k: 3 
+  save_interval: 1000
+  report_memory: False
+  discard_ratio: 0.9
+  head_fusion: "max"
+  daam_norm: False
+  gpu_id: 0
+
+models: 
+  vit_base_augreg: 
+    loader: "timm"
+    model: "vit_base_patch16_224.augreg2_in21k_ft_in1k"
+    height: 14
+    width: 14
+    image_size: 224
+    target_layer: "attention"
+    hierarchical: False
+
+  vit_base: 
+    loader: "timm"
+    model: "vit_base_patch16_224"
+    height: 14
+    width: 14
+    image_size: 224
+    target_layer: "attention"
+    hierarchical: False
+
+  flexivit: 
+    loader: "timm"
+    model: "flexivit_base"
+    height: 15
+    width: 15
+    image_size: 240
+    target_layer: "attention"
+    hierarchical: False
+
+  deit_base: 
+    loader: "torchhub"
+    model: "deit_base_patch16_224"
+    repo: "facebookresearch/deit:main"
+    height: 14
+    width: 14
+    image_size: 224
+    target_layer: "attention"
+    hierarchical: False
+
+  deit_tiny: 
+    loader: "torchhub"
+    model: "deit_tiny_patch16_224"
+    repo: "facebookresearch/deit:main"
+    height: 14
+    width: 14
+    image_size: 224
+    target_layer: "attention"
+    hierarchical: False
+
+  vit_small: 
+    loader: "timm"
+    model: "vit_small_patch16_224.augreg_in21k_ft_in1k"
+    height: 14
+    width: 14
+    image_size: 224
+    target_layer: "attention"
+    hierarchical: False
+
+  deit_small_patch: 
+    loader: "torchhub"
+    model: "deit_small_patch16_224"
+    repo: "facebookresearch/deit:main"
+    height: 14
+    width: 14
+    image_size: 224
+    target_layer: "attention"
+    hierarchical: False

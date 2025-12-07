@@ -1,0 +1,115 @@
+dataset: coco-s
+
+pipeline_params: 
+  threshold: 0.6
+  hard_threshold: False 
+  min_confidence: 0.04
+  filter_coco_stuff: False 
+  eigen_smooth: null 
+  aug_smooth: null 
+  top_k: 3 
+  save_interval: 1000
+  report_memory: False
+  discard_ratio: 0.9
+  head_fusion: "max"
+  daam_norm: False
+
+models:
+  clip-vit-base:
+    model: "openai/clip-vit-base-patch32"
+    processor: "openai/clip-vit-base-patch32"
+    height: 7
+    width: 7
+    image_size: 224
+    target_layer: "clip.vision_model.encoder.layers[-1].layer_norm1"
+    hierarchical: False
+
+  TinyCLIP-ViT-8M:
+    model: "wkcn/TinyCLIP-ViT-8M-16-Text-3M-YFCC15M"
+    processor: "wkcn/TinyCLIP-ViT-8M-16-Text-3M-YFCC15M"
+    height: 14
+    width: 14
+    image_size: 224
+    target_layer: "clip.vision_model.encoder.layers[-1].layer_norm1"
+    hierarchical: False
+
+  TinyCLIP-ViT-40M:
+    model: "wkcn/TinyCLIP-ViT-40M-32-Text-19M-LAION400M"
+    processor: "wkcn/TinyCLIP-ViT-40M-32-Text-19M-LAION400M"
+    height: 7
+    width: 7
+    image_size: 224
+    target_layer: "clip.vision_model.encoder.layers[-1].layer_norm1"
+    hierarchical: False
+
+  TinyCLIP-ViT-61M:
+    model: "wkcn/TinyCLIP-ViT-61M-32-Text-29M-LAION400M"
+    processor: "wkcn/TinyCLIP-ViT-61M-32-Text-29M-LAION400M"
+    height: 7
+    width: 7
+    image_size: 224
+    target_layer: "clip.vision_model.encoder.layers[-1].layer_norm1"
+    hierarchical: False
+
+  fashion-clip: 
+    model: "patrickjohncyh/fashion-clip"
+    processor: "patrickjohncyh/fashion-clip"
+    height: 7
+    width: 7
+    image_size: 224
+    target_layer: "clip.vision_model.encoder.layers[-1].layer_norm1"
+    hierarchical: False
+
+  DFN:
+    model: "XudongShen/DFN-public"
+    processor: "XudongShen/DFN-public"
+    height: 7
+    width: 7
+    image_size: 224
+    target_layer: "clip.vision_model.encoder.layers[-1].layer_norm1"
+    hierarchical: False
+
+  metaclip:
+    model: "facebook/metaclip-b32-400m"
+    processor: "facebook/metaclip-b32-400m"
+    height: 7
+    width: 7
+    image_size: 224
+    target_layer: "clip.vision_model.encoder.layers[-1].layer_norm1"
+    hierarchical: False
+
+  plip:
+    model: "vinid/plip"
+    processor: "vinid/plip"
+    height: 7
+    width: 7
+    image_size: 224
+    target_layer: "clip.vision_model.encoder.layers[-1].layer_norm1"
+    hierarchical: False
+
+  clip-rsicd:
+    model: "flax-community/clip-rsicd-v2"
+    processor: "flax-community/clip-rsicd-v2"
+    height: 7
+    width: 7
+    image_size: 224
+    target_layer: "clip.vision_model.encoder.layers[-1].layer_norm1"
+    hierarchical: False
+
+  QuiltNet:
+    model: "wisdomik/QuiltNet-B-32"
+    processor: "wisdomik/QuiltNet-B-32"
+    height: 7
+    width: 7
+    image_size: 224
+    target_layer: "clip.vision_model.encoder.layers[-1].layer_norm1"
+    hierarchical: False
+
+  pubmed-clip:
+    model: "flaviagiammarino/pubmed-clip-vit-base-patch32"
+    processor: "flaviagiammarino/pubmed-clip-vit-base-patch32"
+    height: 7
+    width: 7
+    image_size: 224
+    target_layer: "clip.vision_model.encoder.layers[-1].layer_norm1"
+    hierarchical: False

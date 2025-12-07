@@ -1,0 +1,110 @@
+dataset: imagenet-s
+
+pipeline_params: 
+  threshold: 0.6
+  hard_threshold: False 
+  min_confidence: 0.04
+  filter_coco_stuff: False 
+  eigen_smooth: null 
+  aug_smooth: null 
+  top_k: 3 
+  save_interval: 1000
+  report_memory: False
+  discard_ratio: 0.9
+  head_fusion: "max"
+  daam_norm: False
+
+models:
+  vit_base_augreg: 
+    loader: "timm"
+    model: "vit_base_patch16_224.augreg2_in21k_ft_in1k"
+    height: 14
+    width: 14
+    image_size: 224
+    target_layer: "blocks[-1].norm1"
+    hierarchical: False
+
+  hiera_base: 
+    loader: "timm"
+    model: "hiera_base_plus_224.mae_in1k_ft_in1k"
+    height: 7
+    width: 7
+    image_size: 224
+    target_layer: "blocks[-1].norm2"
+    hierarchical: True
+
+  vit_base: 
+    loader: "timm"
+    model: "vit_base_patch16_224"
+    height: 14
+    width: 14
+    image_size: 224
+    target_layer: "blocks[-1].norm1"
+    hierarchical: False
+
+  flexivit_base: 
+    loader: "timm"
+    model: "flexivit_base"
+    height: 15
+    width: 15
+    image_size: 240
+    target_layer: "blocks[-1].norm1"
+    hierarchical: False
+
+  convit_small: 
+    loader: "torchhub"
+    model: "convit_small"
+    repo: "huggingface/pytorch-image-models:main"
+    height: 14
+    width: 14
+    image_size: 224
+    target_layer: "blocks[-1].norm1"
+    hierarchical: False
+
+  deit_tiny: 
+    loader: "torchhub"
+    model: "deit_tiny_patch16_224"
+    repo: "facebookresearch/deit:main"
+    height: 14
+    width: 14
+    image_size: 224
+    target_layer: "blocks[-1].norm1"
+    hierarchical: False
+
+  swin_base: 
+    loader: "timm"
+    model: "swin_base_patch4_window7_224"
+    height: 7
+    width: 7
+    image_size: 224
+    target_layer: "layers[-1].blocks[-1].norm2"
+    hierarchical: True
+
+  deit_small: 
+    loader: "torchhub"
+    model: "deit_small_patch16_224"
+    repo: "facebookresearch/deit:main"
+    height: 14
+    width: 14
+    image_size: 224
+    target_layer: "blocks[-1].norm1"
+    hierarchical: False
+
+  deit_base: 
+    loader: "torchhub"
+    model: "deit_base_patch16_224"
+    repo: "facebookresearch/deit:main"
+    height: 14
+    width: 14
+    image_size: 224
+    target_layer: "blocks[-1].norm1"
+    hierarchical: False
+
+  pvt_v2: 
+    loader: "timm"
+    model: "pvt_v2_b0.in1k"
+    height: 8
+    width: 8
+    image_size: 256
+    target_layer: "stages[-1].blocks[-1].norm2"
+    hierarchical: True
