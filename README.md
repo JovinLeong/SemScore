@@ -1,8 +1,12 @@
 > # **🚧 Work in Progress 🚧**
+
 > This repository is under active development. Code, models, and documentation will be added soon.
 
 # SemScore
+
 Official repository for SemScore: Practical Explainable AI through Quantitative Methods to Measure Semantic Spuriosity, published and spotlighted for an oral presentation at the [3rd Workshop on Regulatable ML at NeurIPS2025](https://regulatableml.github.io/).
+
+![semscore-workflow](assets/01-semscore-workflow.png)
 
 Abstract:
 
@@ -10,4 +14,53 @@ Abstract:
 
 Our paper is accessible [here](https://openreview.net/pdf?id=aTOZqUGRCQ).
 
+## Installation and prerequisites
 
+We recommend using Python 3.12 together with a CUDA-compatible GPU running CUDA 12.6, as these are the exact versions we used in all experiments reported in the paper. This configuration has been fully tested and verified to work with the SemScore toolkit.
+
+### 1. Create and set up Conda environment
+
+We recommend creating a Conda environment to manage your Python libraries and dependencies required for our experiments.
+
+```bash
+conda create -n semscore python=3.12.6
+conda activate semscore
+pip install -r requirements.txt
+```
+
+### 2. Download relevant datasets
+
+Instructions to download the relevant datasets can be found through the README in the [data](https://github.com/JovinLeong/SemScore/data) directory.
+
+## Getting started
+
+### 1. Configure desired pipelines
+
+The main experiment pipelines are located in the [pipelines](https://github.com/JovinLeong/SemScore/pipelines) directory.
+Before running them, review the [model configuration files](https://github.com/JovinLeong/SemScore/pipelines/model_config) in `pipelines/model_config` and ensure the dataset paths and settings are correct. Then specify the models you want to evaluate.
+
+A detailed README on running the pipelines can also be found within the directory.
+
+### 2. Run pipeline
+
+Once configurations are set, run the corresponding pipeline script.
+All outputs (saliency maps, SSS scores, logs) will be saved to the [outputs](https://github.com/JovinLeong/SemScore/outputs) directory.
+
+### 3. Evaluate results
+
+The [evaluation](https://github.com/JovinLeong/SemScore/evaluation) directory contains scripts and notebooks for aggregating per-prediction, image-level, and class-level SSS, comparing model spuriosity across architectures and visualizing saliency maps and SSS distributions.
+
+A detailed README on running evaluations can also be found within the directory.
+
+## Citation
+
+```
+@inproceedings{
+leong2024semscore,
+title={SemScore: Practical Explainable AI through Quantitative Methods to Measure Semantic Spuriosity},
+author={Jovin Leong and Wei May Chen and Tiong Kai Tan},
+booktitle={The Third Workshop on Regulatable Machine Learning at The Thirty-Ninth Annual Conference on Neural Information Processing Systems},
+year={2025},
+url={https://openreview.net/pdf?id=aTOZqUGRCQ}
+}
+```
