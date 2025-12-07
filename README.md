@@ -1,7 +1,3 @@
-> # **🚧 Work in Progress 🚧**
-
-> This repository is under active development. Code, models, and documentation will be added soon.
-
 # SemScore
 
 Official repository for SemScore: Practical Explainable AI through Quantitative Methods to Measure Semantic Spuriosity, published and spotlighted for an oral presentation at the [3rd Workshop on Regulatable ML at NeurIPS2025](https://regulatableml.github.io/).
@@ -30,25 +26,27 @@ pip install -r requirements.txt
 
 ### 2. Download relevant datasets
 
-Instructions to download the relevant datasets can be found through the README in the [data](https://github.com/JovinLeong/SemScore/data) directory.
+Instructions to download the relevant datasets can be found through the README in the [data](https://github.com/JovinLeong/SemScore/tree/main/data) directory.
 
 ## Getting started
 
+To visualise how we obtain the Semantic Spuriosity Score (SSS), you can access the demo notebook [here](https://github.com/JovinLeong/SemScore/blob/main/demo/sss_map_visualisations.ipynb). Otherwise, you can follow the instructions below to start using SemScore.
+
 ### 1. Configure desired pipelines
 
-The main experiment pipelines are located in the [pipelines](https://github.com/JovinLeong/SemScore/pipelines) directory.
-Before running them, review the [model configuration files](https://github.com/JovinLeong/SemScore/pipelines/model_config) in `pipelines/model_config` and ensure the dataset paths and settings are correct. Then specify the models you want to evaluate.
+The main experiment pipelines are located in the [pipelines](https://github.com/JovinLeong/SemScore/tree/main/pipelines) directory.
+Before running them, review the [model configuration files](https://github.com/JovinLeong/SemScore/tree/main/pipelines/model_config) in `pipelines/model_config` and ensure the dataset paths and settings are correct. Then specify the models you want to evaluate.
 
 A detailed README on running the pipelines can also be found within the directory.
 
 ### 2. Run pipeline
 
 Once configurations are set, run the corresponding pipeline script.
-All outputs (saliency maps, SSS scores, logs) will be saved to the [outputs](https://github.com/JovinLeong/SemScore/outputs) directory.
+All outputs (saliency maps, SSS scores, logs) will be saved to the [outputs](https://github.com/JovinLeong/SemScore/tree/main/outputs) directory.
 
 ### 3. Evaluate results
 
-The [evaluation](https://github.com/JovinLeong/SemScore/evaluation) directory contains scripts and notebooks for aggregating per-prediction, image-level, and class-level SSS, comparing model spuriosity across architectures and visualizing saliency maps and SSS distributions.
+The [evaluation](https://github.com/JovinLeong/SemScore/tree/main/evaluation) directory contains scripts and notebooks for aggregating per-prediction, image-level, and class-level SSS, comparing model spuriosity across architectures and visualizing saliency maps and SSS distributions. A demo notebook showcasing how we evaluated the outputs can be found [here](https://github.com/JovinLeong/SemScore/blob/main/demo/run_evaluation.ipynb).
 
 A detailed README on running evaluations can also be found within the directory.
 
